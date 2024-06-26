@@ -1,7 +1,7 @@
 #!/bin/bash
-# Step 1: List all policies and save their ARNs to a file, one per line
-echo "Listing all policy ARNs..."
-aws iam list-policies --query 'Policies[*].Arn' --output text | tr '\t' '\n' > policy_arns.txt
+# Step 1: List all Customer managed policies and save their ARNs to a file, one per line
+echo "Listing all customer managed policy ARNs..."
+aws iam list-policies --scope Local --query 'Policies[*].Arn' --output text | tr '\t' '\n' > policy_arns.txt
 if [ $? -ne 0 ]; then
   echo "Error listing policies"
   exit 1
